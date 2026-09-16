@@ -1,0 +1,16 @@
+#!/bin/sh
+
+RED="\033[0;31m"
+GREEN="\033[0;32m"
+YELLOW="\033[0;33m"
+CYAN="\033[0;36m"
+RESET="\033[0m"
+
+printf "${CYAN}[pre-push] Validating branch name...${RESET}\n"
+if ! bunx validate-branch-name; then
+  printf "${RED}[pre-push] Branch name validation failed.${RESET}\n"
+  printf "${YELLOW}[pre-push] Use main, develop or <type>/<kebab-case-name>.${RESET}\n"
+  exit 1
+fi
+
+printf "${GREEN}[pre-push] Branch name is valid.${RESET}\n"

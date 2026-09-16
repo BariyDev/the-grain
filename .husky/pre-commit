@@ -1,0 +1,16 @@
+#!/bin/sh
+
+RED="\033[0;31m"
+GREEN="\033[0;32m"
+YELLOW="\033[0;33m"
+CYAN="\033[0;36m"
+RESET="\033[0m"
+
+printf "${CYAN}[pre-commit] Running Prettier and ESLint on staged files...${RESET}\n"
+if ! bunx lint-staged; then
+  printf "${RED}[pre-commit] Linting failed.${RESET}\n"
+  printf "${YELLOW}[pre-commit] Fix the reported issues and try again.${RESET}\n"
+  exit 1
+fi
+
+printf "${GREEN}[pre-commit] All checks passed.${RESET}\n"
