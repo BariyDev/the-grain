@@ -5,14 +5,21 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.0.0] - 2026-09-15
+## [1.0.1] - 2026-09-16
+
+### Fixed
+
+- README: removed a leftover comment in the Screenshots section, fixed the Getting started numbering and added the clone step
+- CHANGELOG: corrected release dates
+
+## [1.0.0] - 2026-09-16
 
 ### Added
 
 - Project documentation: README with screenshots, FAQ and API reference
 - GNU GPL v3.0 license
 
-## [0.3.0] - 2026-09-15
+## [0.3.0] - 2026-09-16
 
 ### Added
 
@@ -20,7 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Public post creation form for authenticated users
 - Day grouping with Today / Yesterday dividers
 
-## [0.2.0] - 2026-09-15
+## [0.2.0] - 2026-09-16
 
 ### Added
 
@@ -28,7 +35,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Registration page, login page and logout
 - Client type check and production build in CI
 
-## [0.1.0] - 2026-09-15
+## [0.1.0] - 2026-09-16
 
 ### Added
 
