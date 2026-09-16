@@ -35,6 +35,7 @@
   "type": "module",
   "dependencies": {
     "@elysiajs/cors": "^1.4.2",
+    "@elysiajs/jwt": "^1.4.2",
     "drizzle-orm": "^0.45.2",
     "elysia": "^1.4.30",
     "postgres": "^3.4.9"
