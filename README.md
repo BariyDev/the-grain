@@ -47,13 +47,20 @@ the-grain/
 - [Bun](https://bun.sh) 1.3+
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/) (must be running)
 
-### 1. Install dependencies
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/BariyDev/the-grain.git
+cd the-grain
+```
+
+### 2. Install dependencies
 
 ```bash
 bun install
 ```
 
-### 4. Configure environment
+### 3. Configure environment
 
 Copy the example file and adjust values if needed:
 
@@ -61,19 +68,19 @@ Copy the example file and adjust values if needed:
 cp .env.example .env
 ```
 
-### 5. Start the database
+### 4. Start the database
 
 ```bash
 docker compose up -d
 ```
 
-### 6. Apply migrations
+### 5. Apply migrations
 
 ```bash
 bunx drizzle-kit migrate
 ```
 
-### 7. Start the API
+### 6. Start the API
 
 ```bash
 bun --watch server/index.ts
@@ -81,7 +88,7 @@ bun --watch server/index.ts
 
 The API is now available at http://localhost:3000 (check `GET /api/hello`).
 
-### 8. Start the client
+### 7. Start the client
 
 In a second terminal:
 
@@ -128,7 +135,6 @@ Git hooks run automatically on commit and push:
 
 ## Screenshots
 
-commit:
 ![Feed](docs/screenshots/feed.png)
 ![Log in](docs/screenshots/login.png)
 ![Sign up](docs/screenshots/register.png)
@@ -161,4 +167,4 @@ GNU General Public License v3.0 — see [LICENSE](LICENSE).
 
 ## Authors
 
-- Yuri Barinov
+- Yuriy Barinov
