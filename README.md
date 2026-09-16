@@ -128,11 +128,10 @@ Git hooks run automatically on commit and push:
 
 ## Screenshots
 
-<!-- Screenshots will be added in the next commit:
+commit:
 ![Feed](docs/screenshots/feed.png)
 ![Log in](docs/screenshots/login.png)
 ![Sign up](docs/screenshots/register.png)
--->
 
 ## FAQ
 
