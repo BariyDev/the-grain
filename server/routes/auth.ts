@@ -110,4 +110,27 @@ export const authRoutes = new Elysia({ prefix: "/api/auth" })
         password: t.String({ minLength: 6, maxLength: 100 }),
       }),
     },
+  )
+
+  // ======================
+  // GET /api/auth/me (protected)
+  // ======================
+  .get(
+    "/me",
+    async ({ userId, set }) => {
+      const [user] = await db.select().from(users).where(eq(users.id, userId));
+
+      if (!user) {
+        set.status = 404;
+        return { error: "User not found" };
+      }
+
+      return {
+        id: user.id,
+        email: user.email,
+        username: user.username,
+        createdAt: user.createdAt,
+      };
+    },
+    { isAuth: true },
   );
