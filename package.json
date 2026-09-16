@@ -30,7 +30,10 @@
     "lint:fix": "eslint --fix .",
     "format": "prettier --write .",
     "ci:format": "prettier --check .",
-    "prepare": "husky"
+    "prepare": "husky",
+    "typecheck": "bun run typecheck:server && bun run typecheck:client",
+    "typecheck:server": "tsc --noEmit",
+    "typecheck:client": "cd client && bun run typecheck"
   },
   "type": "module",
   "dependencies": {

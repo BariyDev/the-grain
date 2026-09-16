@@ -13,4 +13,11 @@ if ! bunx lint-staged; then
   exit 1
 fi
 
+printf "${CYAN}[pre-commit] Running type check...${RESET}\n"
+if ! bun run typecheck; then
+  printf "${RED}[pre-commit] Type check failed.${RESET}\n"
+  printf "${YELLOW}[pre-commit] Fix the type errors and try again.${RESET}\n"
+  exit 1
+fi
+
 printf "${GREEN}[pre-commit] All checks passed.${RESET}\n"
