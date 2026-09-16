@@ -1,4 +1,4 @@
-import { eq } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 
 import { db } from "../db/client";
@@ -47,4 +47,28 @@ export const postsRoutes = new Elysia({ prefix: "/api/posts" })
       }),
       isAuth: true,
     },
-  );
+  )
+
+  // ======================
+  // GET /api/posts — public feed
+  // ======================
+  .get("/", async () => {
+    // JOIN: posts + author
+    const feed = await db
+      .select({
+        id: posts.id,
+        userId: posts.userId,
+        content: posts.content,
+        createdAt: posts.createdAt,
+        author: {
+          id: users.id,
+          username: users.username,
+        },
+      })
+      .from(posts)
+      .leftJoin(users, eq(posts.userId, users.id))
+      .orderBy(desc(posts.createdAt))
+      .limit(50);
+
+    return feed;
+  });
