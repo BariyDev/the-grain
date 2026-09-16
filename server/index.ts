@@ -2,6 +2,7 @@ import { cors } from "@elysiajs/cors";
 import { Elysia } from "elysia";
 
 import { authRoutes } from "./routes/auth";
+import { postsRoutes } from "./routes/posts";
 
 const app = new Elysia()
   .use(cors())
@@ -32,6 +33,7 @@ const app = new Elysia()
   })
   .get("/api/hello", () => ({ message: "Server is running!" }))
   .use(authRoutes)
+  .use(postsRoutes)
   .listen(3000);
 
 console.log(`Elysia is running: http://localhost:${app.server?.port ?? 3000}`);
