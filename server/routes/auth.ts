@@ -67,4 +67,47 @@ export const authRoutes = new Elysia({ prefix: "/api/auth" })
         password: t.String({ minLength: 6, maxLength: 100 }),
       }),
     },
+  )
+
+  // ======================
+  // POST /api/auth/login
+  // ======================
+  .post(
+    "/login",
+    async ({ body, jwt, set }) => {
+      const { email, password } = body;
+
+      const [user] = await db.select().from(users).where(eq(users.email, email));
+
+      if (!user) {
+        set.status = 401;
+        return { error: "Invalid email or password" };
+      }
+
+      const isValid = await Bun.password.verify(password, user.passwordHash);
+      if (!isValid) {
+        set.status = 401;
+        return { error: "Invalid email or password" };
+      }
+
+      const token = await jwt.sign({
+        userId: user.id,
+        exp: "7d",
+      });
+
+      return {
+        token,
+        user: {
+          id: user.id,
+          email: user.email,
+          username: user.username,
+        },
+      };
+    },
+    {
+      body: t.Object({
+        email: t.String({ pattern: "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$" }),
+        password: t.String({ minLength: 6, maxLength: 100 }),
+      }),
+    },
   );
