@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { useI18n } from "vue-i18n";
 import { RouterLink, useRouter } from "vue-router";
 
 import { useAuth } from "../composables/useAuth";
 
 const router = useRouter();
+const { t } = useI18n();
 const { login } = useAuth();
 
 const email = ref("");
@@ -19,7 +21,7 @@ async function handleSubmit(): Promise<void> {
     await login(email.value, password.value);
     await router.push("/feed");
   } catch (error_) {
-    error.value = error_ instanceof Error ? error_.message : "Failed to log in";
+    error.value = error_ instanceof Error ? error_.message : t("auth.logInFailed");
   } finally {
     loading.value = false;
   }
@@ -28,26 +30,28 @@ async function handleSubmit(): Promise<void> {
 
 <template>
   <section class="card auth-card">
-    <h1>Log in</h1>
+    <h1>{{ t("nav.login") }}</h1>
 
     <form @submit.prevent="handleSubmit">
       <label>
-        Email
+        {{ t("auth.email") }}
         <input v-model="email" type="email" placeholder="you@example.com" required />
       </label>
 
       <label>
-        Password
-        <input v-model="password" type="password" placeholder="your password" required />
+        {{ t("auth.password") }}
+        <input v-model="password" type="password" :placeholder="t('auth.passwordPlaceholderLogin')" required />
       </label>
 
       <p v-if="error" class="error">{{ error }}</p>
 
       <button class="button" type="submit" :disabled="loading">
-        {{ loading ? "Logging in…" : "Log in" }}
+        {{ loading ? t("auth.loggingIn") : t("nav.login") }}
       </button>
     </form>
 
-    <p class="hint">No account? <RouterLink to="/register">Sign up</RouterLink></p>
+    <p class="hint">
+      {{ t("auth.noAccount") }} <RouterLink to="/register">{{ t("auth.signUpButton") }}</RouterLink>
+    </p>
   </section>
 </template>

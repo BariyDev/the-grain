@@ -1,0 +1,42 @@
+{
+  "nav": {
+    "login": "Войти",
+    "logout": "Выйти",
+    "language": "Язык"
+  },
+  "auth": {
+    "signUpTitle": "Регистрация",
+    "signUpButton": "Создать аккаунт",
+    "email": "Email",
+    "username": "Имя пользователя",
+    "usernamePlaceholder": "от 3 до 50 символов",
+    "password": "Пароль",
+    "passwordPlaceholder": "минимум 6 символов",
+    "passwordPlaceholderLogin": "ваш пароль",
+    "sending": "Отправка…",
+    "loggingIn": "Вход…",
+    "accountCreated": "Аккаунт создан! Перенаправляем на вход…",
+    "haveAccount": "Уже есть аккаунт?",
+    "noAccount": "Нет аккаунта?",
+    "signUpFailed": "Не удалось зарегистрироваться",
+    "logInFailed": "Не удалось войти"
+  },
+  "feed": {
+    "title": "Лента",
+    "newPost": "Новый пост",
+    "placeholder": "Что нового?",
+    "publish": "Опубликовать",
+    "publishing": "Публикуем…",
+    "loading": "Загружаем ленту…",
+    "empty": "Здесь пока пусто. Будь первым!",
+    "loadFailed": "Не удалось загрузить ленту",
+    "createFailed": "Не удалось создать пост",
+    "today": "Сегодня",
+    "yesterday": "Вчера",
+    "loginHintSuffix": ", чтобы написать пост.",
+    "posts": "нет постов | {count} пост | {count} поста | {count} постов"
+  },
+  "post": {
+    "unknownAuthor": "Неизвестный"
+  }
+}
