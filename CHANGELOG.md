@@ -5,6 +5,15 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2026-09-22
+
+### Added
+
+- Interface localization: English and Russian with a header switch
+- Locale-aware dates (Today / Yesterday / full date) via `datetimeFormats` and `d()`
+- Pluralized posts counter via `pluralRules` (Russian rule from the vue-i18n docs)
+- Saved language preference in `localStorage`
+
 ## [1.0.1] - 2026-09-16
 
 ### Fixed
