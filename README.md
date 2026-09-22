@@ -16,6 +16,7 @@ A tiny social network: sign up, write short posts, and read a public feed.
 - Creating short text posts (up to 500 characters)
 - Public feed visible to everyone, even without an account
 - Posts grouped by day (Today / Yesterday / date)
+- Interface localization: English and Russian with an instant header switch
 - Dark terminal-inspired design system with an amber accent
 
 ## Tech stack
@@ -26,7 +27,7 @@ A tiny social network: sign up, write short posts, and read a public feed.
 | Backend  | [Elysia](https://elysiajs.com) + TypeScript                      |
 | Database | PostgreSQL 16 (Docker) + [Drizzle ORM](https://orm.drizzle.team) |
 | Auth     | JWT (`@elysiajs/jwt`), `Bun.password`                            |
-| Frontend | Vue 3 + TypeScript + Vite + vue-router                           |
+| Frontend | Vue 3 + TypeScript + Vite + vue-router + vue-i18n                |
 
 ## Project structure
 
@@ -160,6 +161,10 @@ In `localStorage`. This keeps the client simple; for a production app consider h
 **How do I change the accent color?**
 
 Edit the `--accent` variable in `client/src/style.css`.
+
+**How do I switch the language?**
+
+Use the EN / RU switch in the header. The choice is saved in `localStorage` and applies to dates and numbers too.
 
 ## License
 
