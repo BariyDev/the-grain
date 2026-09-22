@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { useI18n } from "vue-i18n";
 import { RouterLink, useRouter } from "vue-router";
 
 import { api } from "../api/client";
 
 const router = useRouter();
+const { t } = useI18n();
 
 const email = ref("");
 const username = ref("");
@@ -27,7 +29,7 @@ async function handleSubmit(): Promise<void> {
       void router.push("/login");
     }, 1200);
   } catch (error_) {
-    error.value = error_ instanceof Error ? error_.message : "Failed to sign up";
+    error.value = error_ instanceof Error ? error_.message : t("auth.signUpFailed");
   } finally {
     loading.value = false;
   }
@@ -36,25 +38,32 @@ async function handleSubmit(): Promise<void> {
 
 <template>
   <section class="card auth-card">
-    <h1>Sign up</h1>
+    <h1>{{ t("auth.signUpTitle") }}</h1>
 
     <form @submit.prevent="handleSubmit">
       <label>
-        Email
+        {{ t("auth.email") }}
         <input v-model="email" type="email" placeholder="you@example.com" required />
       </label>
 
       <label>
-        Username
-        <input v-model="username" type="text" placeholder="3 to 50 characters" minlength="3" maxlength="50" required />
+        {{ t("auth.username") }}
+        <input
+          v-model="username"
+          type="text"
+          :placeholder="t('auth.usernamePlaceholder')"
+          minlength="3"
+          maxlength="50"
+          required
+        />
       </label>
 
       <label>
-        Password
+        {{ t("auth.password") }}
         <input
           v-model="password"
           type="password"
-          placeholder="at least 6 characters"
+          :placeholder="t('auth.passwordPlaceholder')"
           minlength="6"
           maxlength="100"
           required
@@ -62,13 +71,15 @@ async function handleSubmit(): Promise<void> {
       </label>
 
       <p v-if="error" class="error">{{ error }}</p>
-      <p v-if="success" class="success">Account created! Redirecting to login…</p>
+      <p v-if="success" class="success">{{ t("auth.accountCreated") }}</p>
 
       <button class="button" type="submit" :disabled="loading">
-        {{ loading ? "Sending…" : "Sign up" }}
+        {{ loading ? t("auth.sending") : t("auth.signUpButton") }}
       </button>
     </form>
 
-    <p class="hint">Already have an account? <RouterLink to="/login">Log in</RouterLink></p>
+    <p class="hint">
+      {{ t("auth.haveAccount") }} <RouterLink to="/login">{{ t("nav.login") }}</RouterLink>
+    </p>
   </section>
 </template>

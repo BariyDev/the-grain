@@ -1,9 +1,12 @@
 <script setup lang="ts">
+import { useI18n } from "vue-i18n";
 import { RouterLink, RouterView, useRouter } from "vue-router";
 
 import { useAuth } from "./composables/useAuth";
+import { setLocale } from "./i18n";
 
 const router = useRouter();
+const { t, locale } = useI18n();
 const { user, isAuthenticated, logout } = useAuth();
 
 async function handleLogout(): Promise<void> {
@@ -22,7 +25,25 @@ async function handleLogout(): Promise<void> {
       <nav class="links">
         <template v-if="isAuthenticated">
           <span class="username">{{ user?.username }}</span>
-          <button class="icon-button" type="button" aria-label="Log out" title="Log out" @click="handleLogout">
+        </template>
+        <template v-else>
+          <RouterLink to="/login">{{ t("nav.login") }}</RouterLink>
+        </template>
+
+        <div class="lang-switch" role="group" :aria-label="t('nav.language')">
+          <span class="lang-thumb" :class="{ 'lang-thumb--ru': locale === 'ru' }"></span>
+          <button type="button" :class="{ active: locale === 'en' }" @click="setLocale('en')">EN</button>
+          <button type="button" :class="{ active: locale === 'ru' }" @click="setLocale('ru')">RU</button>
+        </div>
+
+        <template v-if="isAuthenticated">
+          <button
+            class="icon-button"
+            type="button"
+            :aria-label="t('nav.logout')"
+            :title="t('nav.logout')"
+            @click="handleLogout"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="18"
@@ -39,9 +60,6 @@ async function handleLogout(): Promise<void> {
               <line x1="21" x2="9" y1="12" y2="12" />
             </svg>
           </button>
-        </template>
-        <template v-else>
-          <RouterLink to="/login">Log in</RouterLink>
         </template>
       </nav>
     </header>
