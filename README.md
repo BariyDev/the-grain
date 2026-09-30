@@ -134,6 +134,17 @@ Git hooks run automatically on commit and push:
 - **commit-msg** — enforces [Conventional Commits](https://www.conventionalcommits.org/);
 - **pre-push** — validates the branch name (`feat/*`, `feature/*`, `fix/*`, `hotfix/*`, `docs/*`, `chore/*`, ...).
 
+## Documentation
+
+Detailed documentation lives in [`docs/`](docs/):
+
+- [Architecture](docs/ARCHITECTURE.md) — layers, data flow and key components
+- [Development](docs/DEVELOPMENT.md) — setup, commands, hooks and CI
+- [API reference](docs/API.md) — endpoints, request/response formats and examples
+- [Internationalization](docs/INTERNATIONALIZATION.md) — how the English/Russian localization works
+
+For AI coding agents, see [`AGENTS.md`](AGENTS.md).
+
 ## Screenshots
 
 ![Feed](docs/screenshots/feed.png)
